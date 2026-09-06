@@ -1,0 +1,88 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+:root{
+  --neu-bg: #0d1310;
+  --neu-card: #141b18;
+  --neu-border: rgba(255,255,255,0.08);
+  --neu-glow: rgba(52, 211, 153, 0.15);
+}
+
+body {
+  background-color: var(--neu-bg);
+  color: #f3f5f4;
+  font-family: system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+
+@layer components {
+  /* Card panels — flat dark surface with subtle border, replaces light neumorphic shadow */
+  .neu-raised {
+    border-radius: 18px;
+    background-color: var(--neu-card);
+    border: 1px solid var(--neu-border);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  }
+
+  /* Inset / pressed panels — slightly darker than card, subtle inner border */
+  .neu-inset {
+    border-radius: 14px;
+    background-color: rgba(0,0,0,0.25);
+    border: 1px solid var(--neu-border);
+  }
+
+  /* Pill-shaped inputs — dark inset field */
+  .neu-capsule {
+    border-radius: 999px;
+    background-color: rgba(0,0,0,0.3);
+    border: 1px solid var(--neu-border);
+  }
+  .neu-capsule:focus-within {
+    border-color: #34d399;
+    box-shadow: 0 0 0 3px var(--neu-glow);
+  }
+
+  /* Solid action button — emerald accent like "Stock" / "+Sub-location" buttons */
+  .neu-btn-solid {
+    border-radius: 999px;
+    background-color: rgba(52, 211, 153, 0.12);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .neu-btn-solid:hover:not(:disabled) {
+    background-color: rgba(52, 211, 153, 0.2);
+    box-shadow: 0 0 0 3px var(--neu-glow);
+  }
+  .neu-btn-solid:active:not(:disabled) {
+    background-color: rgba(52, 211, 153, 0.28);
+  }
+
+  /* Danger button — matches the red "Delete" button in the reference UI */
+  .neu-btn-danger {
+    border-radius: 999px;
+    background-color: rgba(248, 113, 113, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, 0.35);
+    transition: background-color 0.15s ease;
+  }
+  .neu-btn-danger:hover:not(:disabled) {
+    background-color: rgba(248, 113, 113, 0.2);
+  }
+}
+/* Style native <select> dropdown options for dark theme */
+select {
+  color-scheme: dark;
+}
+
+select option {
+  background-color: #141b18;
+  color: #f3f5f4;
+}
+
+select option:checked,
+select option:hover {
+  background-color: #1c2622;
+  color: #34d399;
+}
